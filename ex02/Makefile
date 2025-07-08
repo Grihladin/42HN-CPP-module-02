@@ -1,4 +1,4 @@
-NAME = ex00
+NAME = ex02
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++17
 SRC_DIR = src
