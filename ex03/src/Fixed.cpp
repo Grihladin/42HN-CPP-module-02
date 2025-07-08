@@ -6,7 +6,7 @@
 /*   By: mratke <mratke@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 20:39:28 by mratke            #+#    #+#             */
-/*   Updated: 2025/07/02 21:05:26 by mratke           ###   ########.fr       */
+/*   Updated: 2025/07/08 18:29:26 by mratke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,15 +83,23 @@ bool Fixed::operator!=(const Fixed &other) const {
 }
 
 Fixed Fixed::operator+(const Fixed &other) const {
-  return Fixed(this->getRawBits() + other.getRawBits());
+  Fixed result;
+  result.setRawBits(this->getRawBits() + other.getRawBits());
+  return result;
 }
 
 Fixed Fixed::operator-(const Fixed &other) const {
-  return Fixed(this->getRawBits() - other.getRawBits());
+  Fixed result;
+  result.setRawBits(this->getRawBits() - other.getRawBits());
+  return result;
 }
 
 Fixed Fixed::operator*(const Fixed &other) const {
-  return Fixed(this->getRawBits() * other.getRawBits());
+  int calc = this->getRawBits() * other.getRawBits();
+  calc = calc >> fractionalBits;
+  Fixed result;
+  result.setRawBits(calc);
+  return (result);
 }
 
 Fixed Fixed::operator/(const Fixed &other) const {
@@ -99,7 +107,10 @@ Fixed Fixed::operator/(const Fixed &other) const {
     std::cout << "you cannot divide by zero";
     exit(1);
   }
-  return Fixed(this->getRawBits() / other.getRawBits());
+  int calc = (this->getRawBits() << fractionalBits) / other.getRawBits();
+  Fixed result;
+  result.setRawBits(calc);
+  return (result);
 }
 
 Fixed &Fixed::operator++() {

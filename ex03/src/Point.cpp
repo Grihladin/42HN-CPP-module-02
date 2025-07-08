@@ -6,7 +6,7 @@
 /*   By: mratke <mratke@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 16:54:01 by mratke            #+#    #+#             */
-/*   Updated: 2025/07/02 18:19:12 by mratke           ###   ########.fr       */
+/*   Updated: 2025/07/07 21:08:18 by mratke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ Fixed sign(Point a, Point b, Point c) {
   Fixed second = b.getY() - c.getY();
   Fixed third = b.getX() - c.getX();
   Fixed fourth = a.getY() - c.getY();
+  std::cout << "first: " << first << ", second: " << second
+            << ", third: " << third << ", fourth: " << fourth << std::endl;
 
   return (first * second - third * fourth);
 }
@@ -51,6 +53,8 @@ bool Point::bsp(Point const a, Point const b, Point const c,
   d1 = sign(point, a, b);
   d2 = sign(point, b, c);
   d3 = sign(point, c, a);
+
+  std::cout << "d1: " << d1 << ", d2: " << d2 << ", d3: " << d3 << std::endl;
 
   if (d1 == 0 || d2 == 0 || d3 == 0)
     return (false);
